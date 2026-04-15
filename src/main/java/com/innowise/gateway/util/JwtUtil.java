@@ -38,6 +38,7 @@ public class JwtUtil {
         return validate(token).getSubject();
     }
 
+
     public String extractRole(String token) {
         return validate(token).get("role", String.class);
     }

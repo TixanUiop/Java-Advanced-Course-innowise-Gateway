@@ -37,7 +37,7 @@ public class RegistrationService {
             )
             .flatMap(auth -> {
 
-            String userId = jwtUtil.extractUserId(auth.getAccessToken());
+            Long userId = extractUserIdSafely(auth);
 
             return userClient.create(
                 CreateUserDTO.builder()
@@ -51,7 +51,7 @@ public class RegistrationService {
                 .thenReturn(auth)
 
                     .onErrorResume(ex ->
-                        authClient.deleteUser(Long.valueOf(userId), internalKey)
+                        authClient.deleteUser(userId, internalKey)
                             .then(Mono.error(
                                 new ResponseStatusException(
                                         HttpStatus.BAD_REQUEST,
@@ -60,5 +60,16 @@ public class RegistrationService {
                             ))
                         );
             });
+    }
+
+    public Long extractUserIdSafely(AuthResponse auth) {
+        try {
+            return Long.valueOf(jwtUtil.extractUserId(auth.getAccessToken()));
+        } catch (Exception e) {
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    "Invalid token, cannot extract userId"
+            );
+        }
     }
 }
