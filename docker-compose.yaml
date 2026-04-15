@@ -2,11 +2,9 @@ version: '3.8'
 
 services:
 
-  # =========================
   # GATEWAY
-  # =========================
   gateway:
-    build: ./gateway
+    build: .
     container_name: gateway
     ports:
       - "8085:8085"
@@ -19,9 +17,8 @@ services:
     networks:
       - backend
 
-  # =========================
   # AUTH SERVICE
-  # =========================
+
   auth-service:
     image: auth-service:latest
     container_name: auth-service
@@ -37,9 +34,8 @@ services:
     networks:
       - backend
 
-  # =========================
+
   # USER SERVICE
-  # =========================
   user-service:
     image: user-service:latest
     container_name: user-service
@@ -57,9 +53,7 @@ services:
     networks:
       - backend
 
-  # =========================
   # ORDER SERVICE
-  # =========================
   order-service:
     image: order-service:latest
     container_name: order-service
@@ -74,10 +68,7 @@ services:
     networks:
       - backend
 
-  # =========================
   # DATABASES
-  # =========================
-
   auth-db:
     image: postgres:15
     container_name: auth-db
@@ -114,9 +105,7 @@ services:
     networks:
       - backend
 
-  # =========================
   # REDIS
-  # =========================
   redis:
     image: redis:7-alpine
     container_name: redis

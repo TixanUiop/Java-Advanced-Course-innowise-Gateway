@@ -24,7 +24,7 @@ public class UserClient {
 
     public Mono<Void> create(CreateUserDTO dto) {
         return webClient.post()
-                .uri("http://localhost:8080/api/v1/users/create")
+                .uri("http://user-service:8080/api/v1/users/create")
                 .header("X-Internal-Key", internalKey)
                 .bodyValue(dto)
                 .retrieve()

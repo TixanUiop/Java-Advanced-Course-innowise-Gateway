@@ -20,7 +20,7 @@ public class AuthClient {
 
     public Mono<AuthResponse> register(AuthRequest request) {
         return webClient.post()
-                .uri("http://localhost:8081/auth/register")
+                .uri("http://auth-service:8081/auth/register")
                 .header("X-Internal-Key", internalKey)
                 .bodyValue(request)
                 .retrieve()
@@ -36,7 +36,7 @@ public class AuthClient {
 
     public Mono<Void> deleteUser(Long id, String key) {
         return webClient.delete()
-                .uri("http://localhost:8081/auth/internal/{id}", id)
+                .uri("http://auth-service:8081/auth/internal/{id}", id)
                 .header("X-Internal-Key", key)
                 .retrieve()
                 .bodyToMono(Void.class);
