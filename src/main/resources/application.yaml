@@ -41,9 +41,13 @@ spring:
 
 logging:
   level:
-    org.springframework.cloud.gateway: debug
-    reactor.netty: debug
-    org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: TRACE
-
+      root: INFO
+      org.springframework.web: DEBUG
+      org.springframework.cloud.gateway: DEBUG
+      reactor.netty: DEBUG
+      feign: DEBUG
+      com.innowise: DEBUG
+internal:
+  key: innowise-secret-internal-key
 jwt:
   secret: ${JWT_SECRET:com-innowise-authentication-service-secret-key}

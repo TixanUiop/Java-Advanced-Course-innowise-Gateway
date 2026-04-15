@@ -34,25 +34,25 @@
 
     <dependencies>
 
-        <!-- GATEWAY -->
+        <!-- 🌐 API Gateway (WebFlux-based) -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 
-        <!-- WEBFLUX -->
+        <!-- 🌊 Reactive stack -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-        <!-- SECURITY -->
+        <!-- 🔐 Security (WebFlux compatible) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- JWT -->
+        <!-- 🔑 JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -73,14 +73,14 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- LOMBOK -->
+        <!-- 🧠 Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- TEST -->
+        <!-- 🧪 tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
