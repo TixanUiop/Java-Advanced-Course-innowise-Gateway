@@ -1,13 +1,10 @@
-package com.innowise.gateway.controller.client;
+package com.innowise.gateway.client;
 
 import com.innowise.gateway.dto.CreateUserDTO;
-import com.innowise.gateway.dto.UserDTO;
 import com.innowise.gateway.exception.UserAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;

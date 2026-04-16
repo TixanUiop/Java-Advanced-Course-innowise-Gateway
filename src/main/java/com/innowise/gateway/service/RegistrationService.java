@@ -1,12 +1,11 @@
 package com.innowise.gateway.service;
 
-import com.innowise.gateway.controller.client.AuthClient;
-import com.innowise.gateway.controller.client.UserClient;
+import com.innowise.gateway.client.AuthClient;
+import com.innowise.gateway.client.UserClient;
 import com.innowise.gateway.dto.AuthRequest;
 import com.innowise.gateway.dto.AuthResponse;
 import com.innowise.gateway.dto.CreateUserDTO;
 import com.innowise.gateway.dto.RegisterRequest;
-import com.innowise.gateway.exception.UserAlreadyExistsException;
 import com.innowise.gateway.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

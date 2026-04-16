@@ -1,4 +1,4 @@
-package com.innowise.gateway.controller.client;
+package com.innowise.gateway.client;
 
 import com.innowise.gateway.dto.AuthRequest;
 import com.innowise.gateway.dto.AuthResponse;
