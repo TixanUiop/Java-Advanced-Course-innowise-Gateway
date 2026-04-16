@@ -19,9 +19,12 @@ public class UserClient {
     @Value("${internal.key}")
     private String internalKey;
 
+    @Value("${clients.user.url-create}")
+    private String createUserUrl;
+
     public Mono<Void> create(CreateUserDTO dto) {
         return webClient.post()
-                .uri("http://user-service:8080/api/v1/users/create")
+                .uri(createUserUrl)
                 .header("X-Internal-Key", internalKey)
                 .bodyValue(dto)
                 .retrieve()

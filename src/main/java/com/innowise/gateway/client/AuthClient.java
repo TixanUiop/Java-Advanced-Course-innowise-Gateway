@@ -18,9 +18,16 @@ public class AuthClient {
     @Value("${internal.key}")
     private String internalKey;
 
+    @Value("${clients.auth.url-register}")
+    private String registerUrl;
+
+    @Value("${clients.auth.url-delete}")
+    private String deleteUrl;
+
+
     public Mono<AuthResponse> register(AuthRequest request) {
         return webClient.post()
-                .uri("http://auth-service:8081/auth/register")
+                .uri(registerUrl)
                 .header("X-Internal-Key", internalKey)
                 .bodyValue(request)
                 .retrieve()
@@ -36,7 +43,7 @@ public class AuthClient {
 
     public Mono<Void> deleteUser(Long id, String key) {
         return webClient.delete()
-                .uri("http://auth-service:8081/auth/internal/{id}", id)
+                .uri(deleteUrl, id)
                 .header("X-Internal-Key", key)
                 .retrieve()
                 .bodyToMono(Void.class);
