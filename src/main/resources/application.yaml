@@ -10,44 +10,46 @@ spring:
       routes:
 
         - id: auth-service
-          uri: http://localhost:8081
+          uri: http://auth-service:8081
           predicates:
             - Path=/auth/**
 
         - id: order-service
-          uri: http://localhost:8082
+          uri: http://order-service:8082
           predicates:
             - Path=/api/orders/**
 
         - id: order-items-service
-          uri: http://localhost:8082
+          uri: http://order-service:8082
           predicates:
             - Path=/api/order-items/**
 
         - id: items-service
-          uri: http://localhost:8082
+          uri: http://order-service:8082
           predicates:
             - Path=/api/items/**
 
         - id: user-service
-          uri: http://localhost:8080
+          uri: http://user-service:8080
           predicates:
             - Path=/api/v1/users/**
 
         - id: payment-service
-          uri: http://localhost:8080
+          uri: http://user-service:8080
           predicates:
             - Path=/api/v1/payment-cards/**
 
 logging:
   level:
-      root: INFO
-      org.springframework.web: DEBUG
-      org.springframework.cloud.gateway: DEBUG
-      reactor.netty: DEBUG
-      feign: DEBUG
-      com.innowise: DEBUG
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: DEBUG
+    feign: DEBUG
+    com.innowise: DEBUG
+
 internal:
   key: innowise-secret-internal-key
+
 jwt:
   secret: ${JWT_SECRET:com-innowise-authentication-service-secret-key}
