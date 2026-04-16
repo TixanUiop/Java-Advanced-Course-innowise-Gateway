@@ -61,7 +61,7 @@ public class RegistrationService {
             });
     }
 
-    public Long extractUserIdSafely(AuthResponse auth) {
+    private Long extractUserIdSafely(AuthResponse auth) {
         try {
             return Long.valueOf(jwtUtil.extractUserId(auth.getAccessToken()));
         } catch (Exception e) {
