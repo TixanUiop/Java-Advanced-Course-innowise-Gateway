@@ -36,28 +36,28 @@ public class RegistrationService {
             )
             .flatMap(auth -> {
 
-            Long userId = extractUserIdSafely(auth);
+                Long userId = extractUserIdSafely(auth);
 
-            return userClient.create(
-                CreateUserDTO.builder()
-                    .name(req.getName())
-                    .email(req.getEmail())
-                    .active(true)
-                    .birthDate(req.getBirthDate())
-                    .surname(req.getSurname())
-                    .build())
+                return userClient.create(
+                    CreateUserDTO.builder()
+                        .name(req.getName())
+                        .email(req.getEmail())
+                        .active(true)
+                        .birthDate(req.getBirthDate())
+                        .surname(req.getSurname())
+                        .build())
 
-                .thenReturn(auth)
+                    .thenReturn(auth)
 
-                    .onErrorResume(ex ->
-                        authClient.deleteUser(userId, internalKey)
-                            .then(Mono.error(
-                                new ResponseStatusException(
-                                        HttpStatus.BAD_REQUEST,
-                                        "Registration failed, rollback done: " + ex.getMessage()
-                                )
-                            ))
-                        );
+                        .onErrorResume(ex ->
+                            authClient.deleteUser(userId, internalKey)
+                                .then(Mono.error(
+                                    new ResponseStatusException(
+                                            HttpStatus.BAD_REQUEST,
+                                            "Registration failed, rollback done: " + ex.getMessage()
+                                    )
+                                ))
+                            );
             });
     }
 
