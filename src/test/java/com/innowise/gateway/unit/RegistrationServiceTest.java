@@ -25,6 +25,7 @@ import java.time.LocalDate;
 
 import static org.mockito.Mockito.*;
 
+
 @ExtendWith(MockitoExtension.class)
 public class RegistrationServiceTest {
 
