@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/gateway")
 @RequiredArgsConstructor
 public class RegistrationController {
 
     private final RegistrationService service;
 
-    @PostMapping("/users")
+    @PostMapping("/auth")
     public Mono<AuthResponse> register(@RequestBody RegisterRequest req) {
         return service.register(req);
     }

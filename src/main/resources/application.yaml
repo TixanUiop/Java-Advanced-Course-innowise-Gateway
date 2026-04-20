@@ -56,6 +56,7 @@ security:
     - /auth/login
     - /auth/register
     - /auth/users
+    - /gateway/auth
 clients:
   auth:
     url-register: http://auth-service:8081/auth/register
