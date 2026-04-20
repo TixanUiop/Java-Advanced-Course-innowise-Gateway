@@ -51,7 +51,11 @@ internal:
   key: innowise-secret-internal-key
 jwt:
   secret: ${JWT_SECRET:com-innowise-authentication-service-secret-key}
-
+security:
+  public-paths:
+    - /auth/login
+    - /auth/register
+    - /auth/users
 clients:
   auth:
     url-register: http://auth-service:8081/auth/register
