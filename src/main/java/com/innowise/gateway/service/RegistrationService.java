@@ -36,6 +36,7 @@ public class RegistrationService {
             )
             .flatMap(auth -> {
 
+                // TEMPORARY workaround: extract userId from JWT until auth-service returns it explicitly
                 Long userId = extractUserIdSafely(auth);
 
                 return userClient.create(

@@ -17,6 +17,8 @@ public class RegistrationController {
 
     private final RegistrationService service;
 
+
+
     @PostMapping("/auth")
     public Mono<AuthResponse> register(@RequestBody RegisterRequest req) {
         return service.register(req);
