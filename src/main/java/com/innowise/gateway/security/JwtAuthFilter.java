@@ -20,6 +20,8 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
 
     private final JwtUtil jwtUtil;
 
+    private static final String BEARER_PREFIX = "Bearer ";
+    private static final int BEARER_PREFIX_LENGTH = BEARER_PREFIX.length();
 
     @Value("${security.public-paths}")
     private List<String> publicPaths;
@@ -38,11 +40,11 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
                 .getHeaders()
                 .getFirst(HttpHeaders.AUTHORIZATION);
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith(BEARER_PREFIX)) {
             return unauthorized(exchange);
         }
 
-        String token = authHeader.substring(7);
+        String token = authHeader.substring(BEARER_PREFIX_LENGTH);
 
         if (!jwtUtil.isValid(token)) {
             return unauthorized(exchange);
