@@ -2,6 +2,7 @@ package com.innowise.gateway.security;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -23,8 +24,10 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
     private static final String BEARER_PREFIX = "Bearer ";
     private static final int BEARER_PREFIX_LENGTH = BEARER_PREFIX.length();
 
-    @Value("${security.public-paths}")
-    private List<String> publicPaths;
+    @Autowired
+    private SecurityProperties securityProperties;
+
+
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange,
@@ -32,7 +35,7 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
 
         String path = exchange.getRequest().getURI().getPath();
 
-        if (publicPaths.stream().anyMatch(path::startsWith)) {
+        if (securityProperties.getPublicPaths().stream().anyMatch(path::startsWith)) {
             return chain.filter(exchange);
         }
 

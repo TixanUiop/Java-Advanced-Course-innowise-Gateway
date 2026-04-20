@@ -1,10 +1,12 @@
+
 server:
   port: 8085
 
 spring:
+  config:
+    import: optional:classpath:application.yaml
   application:
     name: gateway
-
   cloud:
     gateway:
       routes:
@@ -47,19 +49,21 @@ logging:
     reactor.netty: DEBUG
     feign: DEBUG
     com.innowise: DEBUG
+
 internal:
   key: innowise-secret-internal-key
+
 jwt:
   secret: ${JWT_SECRET:com-innowise-authentication-service-secret-key}
-security:
-  public-paths:
-    - /auth/login
-    - /auth/register
-    - /auth/users
-    - /gateway/auth
+
 clients:
   auth:
     url-register: http://auth-service:8081/auth/register
     url-delete: http://auth-service:8081/auth/internal/{id}
   user:
     url-create: http://user-service:8080/api/v1/users/create
+security:
+  public-paths:
+    - /auth/login
+    - /auth/register
+    - /gateway/auth
