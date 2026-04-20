@@ -28,7 +28,6 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
     private SecurityProperties securityProperties;
 
 
-
     @Override
     public Mono<Void> filter(ServerWebExchange exchange,
                              org.springframework.cloud.gateway.filter.GatewayFilterChain chain) {
